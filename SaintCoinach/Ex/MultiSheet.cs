@@ -40,8 +40,12 @@ namespace SaintCoinach.Ex {
 
         public ISheet<TData> GetLocalisedSheet(Language language) {
             return _LocalisedSheets.GetOrAdd(language, l => {
-                if (!Header.AvailableLanguages.Contains(l))
-                    throw new NotSupportedException();
+                if (!Header.AvailableLanguages.Contains(l)) {
+                    var fallback = Collection.ActiveLanguage;
+                    if (!Header.AvailableLanguages.Contains(fallback))
+                        fallback = Header.AvailableLanguages.First();
+                    return CreateLocalisedSheet(fallback);
+                }
 
                 return CreateLocalisedSheet(l);
             });
