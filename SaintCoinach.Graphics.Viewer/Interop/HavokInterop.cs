@@ -26,7 +26,7 @@ namespace SaintCoinach.Graphics.Viewer.Interop {
         public static void InitializeSTA() {
             if (_Initialized)
                 throw new InvalidOperationException();
-            initHkInterop();
+            // initHkInterop();
 
             _IsThreaded = false;
             _Initialized = true;
@@ -68,7 +68,7 @@ namespace SaintCoinach.Graphics.Viewer.Interop {
 
         static void HavokLoop() {
             try {
-                initHkInterop();
+                // initHkInterop();
                 _Initialized = true;
 
                 while (true) {
@@ -98,14 +98,14 @@ namespace SaintCoinach.Graphics.Viewer.Interop {
                 }
             } finally {
                 _IsLive = false;
-                if (_Initialized)
-                    quitHkInterop();
+                // if (_Initialized)
+                //     quitHkInterop();
             }
         }
 
-        [DllImport("hkAnimationInterop.dll", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern void initHkInterop();
-        [DllImport("hkAnimationInterop.dll", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern void quitHkInterop();
+        // [DllImport("hkAnimationInterop.dll", CallingConvention = CallingConvention.Cdecl)]
+        // internal static extern void initHkInterop();
+        // [DllImport("hkAnimationInterop.dll", CallingConvention = CallingConvention.Cdecl)]
+        // internal static extern void quitHkInterop();
     }
 }
