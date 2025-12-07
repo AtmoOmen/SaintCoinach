@@ -22,7 +22,12 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
 
             var sheet = coll.GetSheet(TargetSheet);
 
-            var key = System.Convert.ToInt32(rawValue);
+            int key;
+            try {
+                key = System.Convert.ToInt32(rawValue);
+            } catch {
+                return null;
+            }
             return !sheet.ContainsRow(key) ? null : sheet[key];
         }
 
